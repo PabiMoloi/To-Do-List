@@ -1,12 +1,13 @@
-package com.example.todo
+package com.example.todo.view.splash
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import com.example.todo.R
+import com.example.todo.view.main.MainActivity
 
-class SplashScreen : AppCompatActivity() {
+class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,7 +17,7 @@ class SplashScreen : AppCompatActivity() {
 
     private fun stimulateSomeWork() {
         Handler().postDelayed({
-            startActivity(Intent(this@SplashScreen, MainActivity::class.java))
+            startActivity(Intent(this@SplashActivity, MainActivity::class.java))
             finish()
         }, 3000)
     }
