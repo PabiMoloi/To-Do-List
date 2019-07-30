@@ -1,6 +1,25 @@
 .gradle
 /build/
 
+*.iml
+.idea/
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/gradle.xml
+.idea/dictionaries
+.idea/libraries
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+/*/local.properties
+/*/out
+/*/*/build
+/*/*/production
+*.iws
+*.ipr
+*.swp
+
 # Ignore Gradle GUI config
 gradle-app.setting
 
@@ -12,3 +31,12 @@ gradle-app.setting
 
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
+
+\.idea/caches/
+google-services.json
+.DS_Store
+\.firebase/hosting\.\.cache
+
+firebase\.json
+
+\.firebaserc
