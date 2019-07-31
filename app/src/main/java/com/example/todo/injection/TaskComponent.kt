@@ -7,13 +7,13 @@ import dagger.android.support.AndroidSupportInjectionModule
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [(AndroidSupportInjectionModule::class), (TaskModule::class), (ActivityBuilderModule::class)])
+@Component(modules = [(AndroidSupportInjectionModule::class), (TaskModule::class), (ActivityBuilderModule::class), (FragmentBuilderModule::class)])
 interface TaskComponent {
 
     fun inject(taskApplication: TaskApplication)
 
     @Component.Builder
-    interface Builder{
+    interface Builder {
 
         @BindsInstance
         fun application(application: TaskApplication): Builder

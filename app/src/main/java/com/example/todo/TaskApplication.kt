@@ -2,16 +2,22 @@ package com.example.todo
 
 import android.app.Activity
 import android.app.Application
+import androidx.fragment.app.Fragment
 import com.example.todo.injection.AppInjector
 import com.example.todo.injection.DaggerTaskComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
+import dagger.android.HasFragmentInjector
+import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
 
-class TaskApplication() : Application(), HasActivityInjector  {
+class TaskApplication() : Application(), HasActivityInjector, HasSupportFragmentInjector {
+
     @Inject
     lateinit var dispatchingActivityInjector: DispatchingAndroidInjector<Activity>
+    @Inject
+    lateinit var dispatchingFragmentInjector: DispatchingAndroidInjector<Fragment>
 
     override fun onCreate() {
         super.onCreate()
@@ -25,6 +31,11 @@ class TaskApplication() : Application(), HasActivityInjector  {
     }
 
     override fun activityInjector(): AndroidInjector<Activity> {
-        return dispatchingActivityInjector    }
+        return dispatchingActivityInjector
+    }
+
+    override fun supportFragmentInjector(): AndroidInjector<Fragment> {
+        return dispatchingFragmentInjector
+    }
 
 }
