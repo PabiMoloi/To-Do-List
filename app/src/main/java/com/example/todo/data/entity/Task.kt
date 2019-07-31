@@ -6,8 +6,8 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "task")
 data class Task (
         @PrimaryKey(autoGenerate = true)
-        val id: Int?,
+        val id: Int? = null,
         val title: String?,
         val description: String?,
-        val complete: Boolean?
+        val completeStatus: Boolean?
 )

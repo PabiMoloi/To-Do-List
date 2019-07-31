@@ -9,7 +9,7 @@ import com.example.todo.data.dao.TaskDao
 
 
 @Database(entities = [Task::class],
-        version = 1,
+        version = 2,
         exportSchema = false)
 abstract class TaskDatabase: RoomDatabase() {
 
@@ -29,7 +29,7 @@ abstract class TaskDatabase: RoomDatabase() {
         private fun buildDatabase(context: Context): TaskDatabase {
             return Room.databaseBuilder(context, TaskDatabase::class.java, "task_database.db")
                     .allowMainThreadQueries()
-                    //.fallbackToDestructiveMigration()
+                    .fallbackToDestructiveMigration()
                     .build()
         }
     }
