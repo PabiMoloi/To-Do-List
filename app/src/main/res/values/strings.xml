@@ -1,3 +1,15 @@
 <resources>
-    <string name="app_name">ToDo</string>
+    <string name="app_name">To-Do</string>
+    <string name="work_things_to_complete">Work Things To Complete</string>
+    <string name="title_to_do_list">To Do List</string>
+    <string name="title_progress">Progress</string>
+    <string name="title_done">%1$d%% Done</string>
+    <string name="title_to_do">to do</string>
+    <string name="title_tasks">No Tasks</string>
+    <string name="title_add_note">Add Note</string>
+    <string name="task_title">Task Title</string>
+    <string name="task_description">Task Description</string>
+    <string name="title_add">Add</string>
+    <string name="title_delete">Delete</string>
+
 </resources>
