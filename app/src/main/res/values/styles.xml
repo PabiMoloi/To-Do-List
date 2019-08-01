@@ -28,4 +28,29 @@
         <item name="bottomSheetStyle">@style/BottomSheet</item>
         <!-- end of bottom sheet -->
     </style>
-</resources>
+
+    <style name="ToolbarStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">@color/apple</item>
+        <item name="android:titleTextColor">@color/white</item>
+    </style>
+
+    <style name="HeadingOneStyle" parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="android:textColor">@color/tundora</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- headlines -->
+    <style name="HeadingTwoStyle" parent="TextAppearance.MaterialComponents.Headline2">
+        <item name="android:textColor">@color/tundora</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="HeadlineThreeStyle" parent="TextAppearance.MaterialComponents.Headline3">
+        <item name="android:textColor">@color/tundora</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+    <!-- end of headlines -->
+
+ </resources>
