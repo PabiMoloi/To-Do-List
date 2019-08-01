@@ -42,7 +42,7 @@ class TaskViewModel @Inject constructor(private val taskRepository: TaskReposito
                     override fun onSubscribe(d: Disposable) {}
 
                     override fun onComplete() {
-                        Log.d("Complete: ", "onComplete - note successfully deleted")
+                        Log.d("Complete: ", "onComplete - task successfully deleted")
                     }
 
                     override fun onError(e: Throwable) {

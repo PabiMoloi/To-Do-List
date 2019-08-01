@@ -6,7 +6,7 @@
     <string name="title_done">%1$d%% Done</string>
     <string name="title_to_do">to do</string>
     <string name="title_tasks">No Tasks</string>
-    <string name="title_add_note">Add Note</string>
+    <string name="title_add_note">Add Task</string>
     <string name="task_title">Task Title</string>
     <string name="task_description">Task Description</string>
     <string name="title_add">Add</string>
