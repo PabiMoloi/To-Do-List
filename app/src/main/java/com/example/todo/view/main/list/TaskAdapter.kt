@@ -13,7 +13,7 @@ import android.content.ClipData.Item
 
 class TaskAdapter @Inject constructor(
         private var taskList: List<Task>,
-        private val checkBoxClickListener:View.OnClickListener
+        private val checkBoxClickListener: View.OnClickListener
 ) : RecyclerView.Adapter<TaskAdapter.TaskListViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskListViewHolder {

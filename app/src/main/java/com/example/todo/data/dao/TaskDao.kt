@@ -19,4 +19,7 @@ interface TaskDao {
 
     @Query("UPDATE task SET completeStatus = :completeStatus where id= :id")
     fun updateTask(id: Int, completeStatus: Boolean)
+
+    @Query("SELECT COUNT(completeStatus) FROM task WHERE completeStatus = :status")
+    fun getCompletedItems(status: Boolean): Int
 }

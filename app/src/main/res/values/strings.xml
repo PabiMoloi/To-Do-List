@@ -3,7 +3,7 @@
     <string name="work_things_to_complete">Work Things To Complete</string>
     <string name="title_to_do_list">To Do List</string>
     <string name="title_progress">Progress</string>
-    <string name="title_done">Done</string>
+    <string name="title_done">%1$d%% Done</string>
     <string name="title_to_do">to do</string>
     <string name="title_tasks">No Tasks</string>
     <string name="title_add_note">Add Note</string>

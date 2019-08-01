@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:background="@color/apple"
         app:cardBackgroundColor="@color/alabaster"
-        app:cardCornerRadius="4dp"
+        app:cardCornerRadius="6dp"
         app:cardElevation="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -81,14 +81,15 @@
                 app:layout_constraintEnd_toStartOf="@+id/textViewPercentageDone"
                 app:layout_constraintStart_toStartOf="@+id/textViewTitleProgress"
                 app:layout_constraintTop_toBottomOf="@+id/textViewTitleProgress"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="0.0"
+                android:progressTint="@color/camarone"/>
 
             <TextView
                 android:id="@+id/textViewPercentageDone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
-                android:text="@string/title_done"
+                tools:text="@string/title_done"
                 app:layout_constraintBottom_toBottomOf="@+id/progressBar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/progressBar" />
@@ -129,17 +130,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/recyclerViewTaskList"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view2"
-        app:layout_constraintVertical_bias="0.0"
-        tools:listitem="@layout/list_item_task" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewTaskList"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view2"
+            app:layout_constraintVertical_bias="0.0"
+            tools:listitem="@layout/list_item_task" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

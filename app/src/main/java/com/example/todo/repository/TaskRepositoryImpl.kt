@@ -10,6 +10,10 @@ class TaskRepositoryImpl @Inject constructor(
         private val taskDao: TaskDao
 ) : TaskRepository {
 
+    override fun getCompletedTasks(status: Boolean): Int {
+        return taskDao.getCompletedItems(status)
+    }
+
     override fun addTask(task: Task): Completable {
         return Completable.fromAction { taskDao.addTask(task) }
     }

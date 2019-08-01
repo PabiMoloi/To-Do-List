@@ -2,6 +2,7 @@ package com.example.todo.view.main
 
 import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.todo.data.entity.Task
 import com.example.todo.repository.TaskRepository
@@ -14,6 +15,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 class TaskViewModel @Inject constructor(private val taskRepository: TaskRepository) : ViewModel() {
 
     var taskList: LiveData<List<Task>>? = null
+    var numberOfCompletedTasks = MutableLiveData<Int>()
 
     internal fun addTask(task: Task) {
         return taskRepository.addTask(task)
@@ -69,5 +71,9 @@ class TaskViewModel @Inject constructor(private val taskRepository: TaskReposito
                         Log.d("Error:", "onError -:$e")
                     }
                 })
+    }
+
+    internal fun getCompletedTasks(status: Boolean) {
+        numberOfCompletedTasks.value = taskRepository.getCompletedTasks(status)
     }
 }

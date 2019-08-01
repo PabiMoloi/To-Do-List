@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todo.R
 import com.example.todo.data.entity.Task
+import com.example.todo.util.returnPercentage
 import com.example.todo.view.main.add.AddTaskFragment
 import com.example.todo.view.main.list.TaskAdapter
 import dagger.android.AndroidInjection
@@ -25,8 +26,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: TaskViewModel
     private lateinit var taskListRecyclerView: RecyclerView
     private lateinit var checkBoxOnClickListener: View.OnClickListener
-    private lateinit var listAdapter : TaskAdapter
+    private lateinit var listAdapter: TaskAdapter
     private var addTaskBottomSheetDialogFragment = AddTaskFragment()
+    private var percentageComplete: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +39,6 @@ class MainActivity : AppCompatActivity() {
         listAdapter = TaskAdapter(ArrayList(), checkBoxOnClickListener)
         setupRecyclerView()
         startObservers()
-
     }
 
     private fun setupViews() {
@@ -47,12 +48,12 @@ class MainActivity : AppCompatActivity() {
         }
         checkBoxOnClickListener = View.OnClickListener {
             val task = it.tag as Task
-            if (task.completeStatus!!){
+            if (task.completeStatus!!) {
                 task.id?.let { it1 -> viewModel.updateTask(it1, false) }
-            }
-            else{
+            } else {
                 task.id?.let { it1 -> viewModel.updateTask(it1, true) }
             }
+            viewModel.getCompletedTasks(true)
         }
     }
 
@@ -63,19 +64,29 @@ class MainActivity : AppCompatActivity() {
     private fun startObservers() {
         viewModel.getAllTasks().observe(this, Observer {
             viewModel.taskList?.value?.toList()?.let { it1 -> listAdapter.setItems(it1) }
+            viewModel.getCompletedTasks(true)
+        })
+
+        viewModel.numberOfCompletedTasks.observe(this, Observer {
+            percentageComplete = returnPercentage(it,listAdapter.itemCount)
+            textViewPercentageDone.text = resources.getString(R.string.title_done, percentageComplete)
+            setProgressBarValue(percentageComplete)
         })
     }
-
 
     private fun setupRecyclerView() {
         val layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         taskListRecyclerView = recyclerViewTaskList
         taskListRecyclerView.layoutManager = layoutManager
         taskListRecyclerView.adapter = listAdapter
-        val dividerItemDecoration = DividerItemDecoration(taskListRecyclerView.getContext(),
+       /* val dividerItemDecoration = DividerItemDecoration(taskListRecyclerView.context,
                 layoutManager.orientation)
-        taskListRecyclerView.addItemDecoration(dividerItemDecoration)
+        taskListRecyclerView.addItemDecoration(dividerItemDecoration)*/
         taskListRecyclerView.isNestedScrollingEnabled = true
         taskListRecyclerView.isFocusable = false
+    }
+
+    private fun setProgressBarValue(percentage: Int){
+        progressBar.progress = percentage
     }
 }

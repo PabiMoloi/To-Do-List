@@ -10,4 +10,5 @@ interface TaskRepository {
     fun getAllTasks(): LiveData<List<Task>>
     fun deleteTask(id: Int): Completable
     fun updateTask(id: Int, completeStatus: Boolean): Completable
+    fun getCompletedTasks(status: Boolean): Int
 }
