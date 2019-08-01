@@ -10,10 +10,12 @@ import com.example.todo.R
 import com.example.todo.data.entity.Task
 import javax.inject.Inject
 import android.content.ClipData.Item
+import android.widget.Button
 
 class TaskAdapter @Inject constructor(
         private var taskList: List<Task>,
-        private val checkBoxClickListener: View.OnClickListener
+        private val checkBoxClickListener: View.OnClickListener,
+        private val deleteListener: View.OnClickListener
 ) : RecyclerView.Adapter<TaskAdapter.TaskListViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskListViewHolder {
@@ -33,12 +35,15 @@ class TaskAdapter @Inject constructor(
         holder.taskStatus.isChecked = task?.completeStatus ?: false
         holder.taskStatus.tag = task
         holder.taskStatus.setOnClickListener(checkBoxClickListener)
+        holder.delete.tag = task
+        holder.delete.setOnClickListener(deleteListener)
     }
 
     inner class TaskListViewHolder(var view: View) : RecyclerView.ViewHolder(view) {
         var taskTitle: TextView = view.findViewById(R.id.textViewTaskTitle)
         var taskDescription: TextView = view.findViewById(R.id.textViewTaskDescription)
         var taskStatus: CheckBox = view.findViewById(R.id.checkBoxTaskStatus)
+        var delete: Button = view.findViewById(R.id.buttonDeleteTask)
     }
 
     fun setItems(tasks: List<Task>) {
