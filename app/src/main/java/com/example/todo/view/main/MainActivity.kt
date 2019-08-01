@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: TaskViewModel
     private lateinit var taskListRecyclerView: RecyclerView
     private lateinit var checkBoxOnClickListener: View.OnClickListener
+    private lateinit var deleteTaskButton: View.OnClickListener
     private lateinit var listAdapter: TaskAdapter
     private var addTaskBottomSheetDialogFragment = AddTaskFragment()
     private var percentageComplete: Int = 0
@@ -36,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setupViewModel()
         setupViews()
-        listAdapter = TaskAdapter(ArrayList(), checkBoxOnClickListener)
+        listAdapter = TaskAdapter(ArrayList(), checkBoxOnClickListener, deleteTaskButton)
         setupRecyclerView()
         startObservers()
     }
@@ -55,6 +56,11 @@ class MainActivity : AppCompatActivity() {
             }
             viewModel.getCompletedTasks(true)
         }
+        deleteTaskButton = View.OnClickListener {
+            val task = it.tag as Task
+            task.id?.let { it1 -> viewModel.deleteTask(it1) }
+            viewModel.getCompletedTasks(true)
+        }
     }
 
     private fun setupViewModel() {
@@ -68,7 +74,7 @@ class MainActivity : AppCompatActivity() {
         })
 
         viewModel.numberOfCompletedTasks.observe(this, Observer {
-            percentageComplete = returnPercentage(it,listAdapter.itemCount)
+            percentageComplete = returnPercentage(it, listAdapter.itemCount)
             textViewPercentageDone.text = resources.getString(R.string.title_done, percentageComplete)
             setProgressBarValue(percentageComplete)
         })
@@ -79,14 +85,11 @@ class MainActivity : AppCompatActivity() {
         taskListRecyclerView = recyclerViewTaskList
         taskListRecyclerView.layoutManager = layoutManager
         taskListRecyclerView.adapter = listAdapter
-       /* val dividerItemDecoration = DividerItemDecoration(taskListRecyclerView.context,
-                layoutManager.orientation)
-        taskListRecyclerView.addItemDecoration(dividerItemDecoration)*/
         taskListRecyclerView.isNestedScrollingEnabled = true
         taskListRecyclerView.isFocusable = false
     }
 
-    private fun setProgressBarValue(percentage: Int){
+    private fun setProgressBarValue(percentage: Int) {
         progressBar.progress = percentage
     }
 }
